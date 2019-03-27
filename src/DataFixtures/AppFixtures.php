@@ -12,6 +12,14 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        // Create an admin User
+        $admin = new User();
+        $admin->setUsername('admin');
+        $admin->setPlainPassword('Admin1234');
+        $admin->addRole('ROLE_ADMIN');
+        $admin->setEmail('admin@exmaple.org');
+        $admin->setEnabled(true);
+
         // Create a normal User = Customer
         $customer = new User();
         $customer->setUsername('herbert');
@@ -19,6 +27,7 @@ class AppFixtures extends Fixture
         $customer->addRole('ROLE_USER');
         $customer->setEmail('herbert@exmaple.org');
         $customer->setEnabled(true);
+        $customer->setAccountant($admin);
 
         // Create personal data for Customer
         $data = new CustomerPersonalData();
@@ -43,17 +52,10 @@ class AppFixtures extends Fixture
         $customer->setCustomerPersonalData($data);
         $customer->setCustomerFinanceData($finance);
 
-        $manager->persist($customer);
 
-        // Create an admin User
-        $admin = new User();
-        $admin->setUsername('admin');
-        $admin->setPlainPassword('Admin1234');
-        $admin->addRole('ROLE_ADMIN');
-        $admin->setEmail('admin@exmaple.org');
         $admin->addCustomer($customer);
-        $admin->setEnabled(true);
 
+        $manager->persist($customer);
         $manager->persist($admin);
 
         $manager->flush();

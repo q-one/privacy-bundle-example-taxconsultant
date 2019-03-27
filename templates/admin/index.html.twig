@@ -2,5 +2,13 @@
 
 {% block body %}
     <h2>Admin</h2>
-    <p>Here you can edit your customers data.</p>
+
+    <h3>Your customers</h3>
+
+    <ul>
+    {% for customer in customers %}
+        <li><a href="#">{{ customer.customerPersonalData.firstname }} {{ customer.customerPersonalData.lastname }}</a></li>
+    {% endfor %}
+    </ul>
+
 {% endblock %}
