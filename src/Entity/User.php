@@ -25,6 +25,16 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\CustomerData", mappedBy="user", cascade={"all"})
+     * @ORM\JoinColumn(nullable = true, unique = true)
+     * @var CustomerData
+     */
+    protected $customerData;
+
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         parent::__construct();
