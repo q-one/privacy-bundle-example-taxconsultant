@@ -23,7 +23,7 @@ class DefaultController extends AbstractController
     {
         if ($this->isGranted("IS_AUTHENTICATED_FULLY")) {
             if ($this->isGranted("ROLE_ADMIN")) {
-                return $this->redirectToRoute('app_admin');
+                return $this->redirectToRoute('admin_index');
             } else {
                 return $this->redirectToRoute('app_customer');
             }
