@@ -1,6 +1,53 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h2>Personal data for: {{ data.getFirstName }} {{ data.getLastName }}</h2>
-    <p>...</p>
+    <h2>Personal data</h2>
+
+    <p>NOTE: This data will be replaced by the privacy survey!</p>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th width="50%">Name</th>
+            <td>{{ data.firstname }} {{ data.lastname }}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>{{ data.street }}<br />{{ data.zip }} {{ data.city }}</td>
+        </tr>
+        <tr>
+            <th>Phone number</th>
+            <td>{{ data.phoneNumber }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Financial data</h2>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th width="50%">Year</th>
+            <td>{{ financeData.year }}</td>
+        </tr>
+        <tr>
+            <th>Income / Year</th>
+            <td>{{ financeData.income|number_format(2, ',', '.') }} €</td>
+        </tr>
+        <tr>
+            <th>Expenses / Year</th>
+            <td>{{ financeData.expenses|number_format(2, ',', '.') }} €</td>
+        </tr>
+        <tr>
+            <th>Tax burden / Year</th>
+            <td>{{ financeData.taxBurden|number_format(2, ',', '.') }} €</td>
+        </tr>
+        <tr>
+            <th>Comment</th>
+            <td>{{ financeData.comment }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
 {% endblock %}

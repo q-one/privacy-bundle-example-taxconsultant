@@ -3,6 +3,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -26,31 +27,37 @@ class CustomerPersonalData
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $firstName;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $lastName;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $street;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $zip;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $city;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $phoneNumber;
 

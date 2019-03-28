@@ -7,7 +7,7 @@
 
     <ul>
     {% for customer in customers %}
-        <li><a href="#">{{ customer.customerPersonalData.firstname }} {{ customer.customerPersonalData.lastname }}</a></li>
+        <li><a href="{{ path("admin_edit", {"customer": customer.id}) }}">{{ customer.customerPersonalData.firstname }} {{ customer.customerPersonalData.lastname }}</a></li>
     {% endfor %}
     </ul>
 

@@ -29,7 +29,10 @@ class PersonalDataController extends AbstractController
             /** @var User $user */
             $user = $this->getUser();
 
-            return $this->render('customer/index.html.twig', ['data' => $user->getCustomerPersonalData()]);
+            return $this->render('customer/index.html.twig', [
+                'data' => $user->getCustomerPersonalData(),
+                'financeData' => $user->getCustomerFinanceData()
+            ]);
         }
     }
 }
