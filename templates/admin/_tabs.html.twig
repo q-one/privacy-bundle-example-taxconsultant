@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link {% if route == "admin_personal_edit" %}active{% endif %}" href="{{ path("admin_personal_edit", {'customer': customer.id}) }}">Personal data</a></li>
+    <li class="nav-item"><a class="nav-link {% if route == "admin_finance_edit" %}active{% endif %}" href="{{ path("admin_finance_edit", {'customer': customer.id}) }}">Finance data</a></li>
+    <li class="nav-item"><a class="nav-link " href="{{ path("admin_index") }}">Back to overview</a></li>
+</ul>

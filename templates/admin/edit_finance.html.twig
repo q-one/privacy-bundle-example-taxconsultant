@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h2>Admin</h2>
+
+    {{ include('admin/_tabs.html.twig', {'customer': customer, 'route': route}) }}
+
+    <h3>Edit customer finance data</h3>
+
+    {{ form_errors(form) }}
+
+    {{ form(form) }}
+
+{% endblock %}
