@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  web:
+    build: .
+    volumes:
+      - ./:/var/www/html
+    ports:
+     - 8000:8000
+    working_dir: /var/www/html
+    command: bin/console server:run 0.0.0.0:8000
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - 3306:3306
+
