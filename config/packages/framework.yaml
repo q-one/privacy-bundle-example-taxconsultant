@@ -18,3 +18,8 @@ framework:
 
     templating:
         engines: ['twig', 'php']
+
+    cache:
+        pools:
+            cache.privacy:
+                adapter: cache.system

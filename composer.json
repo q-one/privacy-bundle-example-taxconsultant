@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "friendsofsymfony/user-bundle": "~2.0",
+        "q-one/privacy-bundle": "dev-release/1.0",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.2.*",
         "symfony/console": "4.2.*",
@@ -78,5 +79,11 @@
             "allow-contrib": false,
             "require": "4.2.*"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "ssh://git@git.q-one-int.com/q-one/privacy-bundle.git"
+        }
+    ]
 }

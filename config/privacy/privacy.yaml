@@ -1,0 +1,27 @@
+App\Entity\CustomerFinanceData:
+  user: 'this.getUser()'
+  groups:
+    default:
+      fields: ['income', 'expenses', 'tax_burden', 'comment']
+      source: ~
+      policy: ~
+      transformer: ~
+      conditions:
+        - condition: QOne\PrivacyBundle\Condition\ObsoleteAfter
+          properties:
+            interval: PT1Y
+            message: 'Obsoleted after 12 month'
+
+App\Entity\CustomerPersonalData:
+  user: 'this.getUser()'
+  groups:
+    default:
+      fields: ['firstName', 'lastName', 'street', 'zip', 'city', 'phoneNumber']
+      source: ~
+      policy: ~
+      transformer: ~
+      conditions:
+        - condition: QOne\PrivacyBundle\Condition\ObsoleteAfter
+          properties:
+            interval: PT1Y
+            message: 'Obsoleted after 12 month'

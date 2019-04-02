@@ -1,0 +1,29 @@
+qone_privacy:
+    collector:
+        enabled: true
+        data_sources:
+            local:
+                factory: QOne\PrivacyBundle\Delivery\LocalDelivery
+    publisher:
+        enabled: true
+        path: /_privacy
+        encoding_strategy: "QOne\\PrivacyBundle\\Survey\\Format\\JsonStrategy"
+    obsolescence:
+        default_policy: "QOne\\PrivacyBundle\\Policy\\NullPolicy"
+        default_verdict: "QOne\\PrivacyBundle\\Verdict\\UnanimousVerdict"
+    persistence:
+        mapper: orm
+    mapping:
+        lazy_loading: true
+        cache: cache.privacy
+        loaders:
+            yaml:
+                class: 'QOne\PrivacyBundle\Mapping\Loader\YamlLoader'
+                paths: ['%kernel.project_dir%/config/privacy']
+                extensions: ['.yaml']
+                excludes: []
+            default:
+                class: 'QOne\PrivacyBundle\Mapping\Loader\AnnotationLoader'
+                paths: ['%kernel.project_dir%/src/Entity']
+                extensions: ['*.php']
+                excludes: ['%kernel.project_dir%/src/Entity/Pms', '%kernel.project_dir%/src/Entity/Legacy']
