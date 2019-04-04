@@ -1,7 +1,10 @@
 <?php
 
+use QOne\PrivacyBundle\QOnePrivacyBundle;
+
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
+    QOne\PrivacyBundle\QOnePrivacyBundle::class => ['all' => true], # TODO before Doctrine Bundle BUG
     Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle::class => ['all' => true],
     Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
@@ -17,5 +20,4 @@ return [
     FOS\UserBundle\FOSUserBundle::class => ['all' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     EightPoints\Bundle\GuzzleBundle\EightPointsGuzzleBundle::class => ['all' => true],
-    QOne\PrivacyBundle\QOnePrivacyBundle::class => ['all' => true],
 ];

@@ -8,18 +8,29 @@
 
 namespace App\Controller;
 
+use App\Entity\CustomerPersonalData;
 use App\Entity\User;
+
+use QOne\PrivacyBundle\Manager\CollectorInterface;
+use QOne\PrivacyBundle\Survey\SurveyRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PersonalDataController extends AbstractController
 {
-    public function __construct()
+    /**
+     * @var CollectorInterface
+     */
+    protected $collector;
+
+    public function __construct(CollectorInterface $collector)
     {
+        $this->collector = $collector;
     }
 
     /**
      * @Route("/customer/", name="app_customer")
+     * @throws \Exception
      */
     public function indexAction()
     {
@@ -29,9 +40,19 @@ class PersonalDataController extends AbstractController
             /** @var User $user */
             $user = $this->getUser();
 
+            $survey = $this->collector->createSurvey(
+                new SurveyRequest(User::class, ['id' => $user->getId()])
+            );
+
+            $dataReference = $survey->getFiles()->get(0)->getObject();
+            $financeReference = $survey->getFiles()->get(1)->getObject();
+
+            $data = $this->getDoctrine()->getRepository($dataReference->getClassName())->findOneBy($dataReference->getIdentifier());
+            $finance = $this->getDoctrine()->getRepository($financeReference->getClassName())->findOneBy($financeReference->getIdentifier());
+
             return $this->render('customer/index.html.twig', [
-                'data' => $user->getCustomerPersonalData(),
-                'financeData' => $user->getCustomerFinanceData()
+                'data' => $data,
+                'financeData' => $finance
             ]);
         }
     }
