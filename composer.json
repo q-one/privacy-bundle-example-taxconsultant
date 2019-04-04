@@ -83,7 +83,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "ssh://git@git.q-one-int.com/q-one/privacy-bundle.git"
+            "url": "git@github.com:q-one/privacy-bundle.git"
         }
     ]
 }
