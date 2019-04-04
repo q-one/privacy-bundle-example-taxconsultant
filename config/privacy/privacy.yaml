@@ -2,26 +2,26 @@ App\Entity\CustomerFinanceData:
   user: 'this.getUser()'
   groups:
     default:
-      fields: ['income', 'expenses', 'tax_burden', 'comment']
-      source: ~
+      fields: ['income', 'expenses', 'taxBurden', 'comment']
+      source: 'this.getSource()'
       policy: "QOne\\PrivacyBundle\\Policy\\NullPolicy"
       transformer: ~
       conditions:
         - condition: QOne\PrivacyBundle\Condition\ObsoleteAfter
           properties:
-            interval: PT2M
-            message: 'Obsoleted after 2 minutes'
+            interval: PT2S
+            message: 'Obsoleted after 2 seconds'
 
 App\Entity\CustomerPersonalData:
   user: 'this.getUser()'
   groups:
     default:
       fields: ['street', 'zip', 'city', 'phoneNumber']
-      source: ~
+      source: 'this.getSource()'
       policy: "QOne\\PrivacyBundle\\Policy\\NullPolicy"
       transformer: ~
       conditions:
         - condition: QOne\PrivacyBundle\Condition\ObsoleteAfter
           properties:
-            interval: PT2M
-            message: 'Obsoleted after 2 minutes'
+            interval: PT2S
+            message: 'Obsoleted after 2 seconds'

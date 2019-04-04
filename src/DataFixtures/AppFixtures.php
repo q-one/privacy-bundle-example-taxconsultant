@@ -49,14 +49,12 @@ class AppFixtures extends Fixture
         $finance->setYear(2018);
         $finance->setUser($customer);
 
-        $customer->setCustomerPersonalData($data);
-        $customer->setCustomerFinanceData($finance);
-
-
         $admin->addCustomer($customer);
 
         $manager->persist($customer);
         $manager->persist($admin);
+        $manager->persist($data);
+        $manager->persist($finance);
 
         $manager->flush();
     }

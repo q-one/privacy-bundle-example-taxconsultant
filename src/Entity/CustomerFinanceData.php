@@ -25,8 +25,7 @@ class CustomerFinanceData
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="customerFinanceData")
-     * @ORM\JoinColumn(nullable = true, unique=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @var UserInterface
      */
     protected $user;
@@ -50,7 +49,7 @@ class CustomerFinanceData
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $tax_burden;
+    protected $taxBurden;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -66,7 +65,7 @@ class CustomerFinanceData
     }
 
     /**
-     * @return UserInterface
+     * @return User
      */
     public function getUser(): UserInterface
     {
@@ -134,15 +133,15 @@ class CustomerFinanceData
      */
     public function getTaxBurden()
     {
-        return $this->tax_burden;
+        return $this->taxBurden;
     }
 
     /**
-     * @param mixed $tax_burden
+     * @param mixed $taxBurden
      */
-    public function setTaxBurden($tax_burden): void
+    public function setTaxBurden($taxBurden): void
     {
-        $this->tax_burden = $tax_burden;
+        $this->taxBurden = $taxBurden;
     }
 
     /**
@@ -159,5 +158,11 @@ class CustomerFinanceData
     public function setComment($comment): void
     {
         $this->comment = $comment;
+    }
+
+    public function getSource()
+    {
+        $accountant = $this->getUser()->getAccountant();
+        return $accountant->getUsername();
     }
 }

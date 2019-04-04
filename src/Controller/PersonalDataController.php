@@ -44,15 +44,9 @@ class PersonalDataController extends AbstractController
                 new SurveyRequest(User::class, ['id' => $user->getId()])
             );
 
-            $dataReference = $survey->getFiles()->get(0)->getObject();
-            $financeReference = $survey->getFiles()->get(1)->getObject();
-
-            $data = $this->getDoctrine()->getRepository($dataReference->getClassName())->findOneBy($dataReference->getIdentifier());
-            $finance = $this->getDoctrine()->getRepository($financeReference->getClassName())->findOneBy($financeReference->getIdentifier());
 
             return $this->render('customer/index.html.twig', [
-                'data' => $data,
-                'financeData' => $finance
+                'data' => $survey->getFiles()
             ]);
         }
     }

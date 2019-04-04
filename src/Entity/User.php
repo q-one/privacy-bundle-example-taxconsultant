@@ -30,14 +30,12 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToOne(targetEntity="CustomerPersonalData", mappedBy="user", cascade={"all"})
-     * @ORM\JoinColumn(nullable = true, unique = true)
      * @var CustomerPersonalData
      */
     protected $customerPersonalData;
 
     /**
-     * @ORM\OneToOne(targetEntity="CustomerFinanceData", mappedBy="user", cascade={"all"})
-     * @ORM\JoinColumn(nullable = true, unique = true)
+     * @ORM\OneToMany(targetEntity="CustomerFinanceData", mappedBy="user", cascade={"all"})
      * @var CustomerFinanceData
      */
     protected $customerFinanceData;

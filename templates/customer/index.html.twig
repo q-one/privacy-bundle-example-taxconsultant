@@ -1,51 +1,39 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h2>Personal data</h2>
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th width="50%">Name</th>
-            <td>{{ data.firstname }} {{ data.lastname }}</td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td>{{ data.street }}<br />{{ data.zip }} {{ data.city }}</td>
-        </tr>
-        <tr>
-            <th>Phone number</th>
-            <td>{{ data.phoneNumber }}</td>
-        </tr>
-        </tbody>
-    </table>
+    {% for file in data.files %}
+        <h2>{{ file.object.className }}</h2>
+        <table class="table">
+            <tr>
+                <th>Collected at</th>
+                <td>{{ file.collectedAt|date }}</td>
+            </tr>
+            <tr>
+                <th>Source</th>
+                <td>{{ file.source }}</td>
+            </tr>
+            <tr>
+                <th>Groups</th>
+                <td>
+                    {% for group in file.groups %}
+                        <p>{{ group.id }}</p>
+                        <ul>
+                        {% for condition in group.conditions %}
+                            <li>Condition: {{ condition.type }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Records</p>
+                        <ul>
+                        {% for record in group.records %}
+                            <li>{{ record.fieldname }}: {{ record.value }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endfor %}
 
-    <h2>Financial data</h2>
-
-    <table class="table">
-        <tbody>
-        <tr>
-            <th width="50%">Year</th>
-            <td>{{ financeData.year }}</td>
-        </tr>
-        <tr>
-            <th>Income / Year</th>
-            <td>{{ financeData.income|number_format(2, ',', '.') }} €</td>
-        </tr>
-        <tr>
-            <th>Expenses / Year</th>
-            <td>{{ financeData.expenses|number_format(2, ',', '.') }} €</td>
-        </tr>
-        <tr>
-            <th>Tax burden / Year</th>
-            <td>{{ financeData.taxBurden|number_format(2, ',', '.') }} €</td>
-        </tr>
-        <tr>
-            <th>Comment</th>
-            <td>{{ financeData.comment }}</td>
-        </tr>
-        </tbody>
-    </table>
-
+                </td>
+            </tr>
+        </table>
+    {% endfor %}
 
 {% endblock %}

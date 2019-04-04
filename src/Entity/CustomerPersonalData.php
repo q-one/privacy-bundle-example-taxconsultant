@@ -19,8 +19,7 @@ class CustomerPersonalData
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="customerPersonalData")
-     * @ORM\JoinColumn(nullable = true, unique=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\User")
      * @var UserInterface
      */
     protected $user;
@@ -200,5 +199,11 @@ class CustomerPersonalData
     public function setUser(UserInterface $user): void
     {
         $this->user = $user;
+    }
+
+    public function getSource()
+    {
+        $accountant = $this->getUser()->getAccountant();
+        return $accountant->getUsername();
     }
 }
